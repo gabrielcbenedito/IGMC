@@ -17,6 +17,7 @@ from models import *
 import traceback
 import warnings
 import sys
+import datetime
 
 # used to traceback which code cause warnings, can delete
 def warn_with_traceback(message, category, filename, lineno, file=None, line=None):
@@ -44,6 +45,14 @@ def logger(info, model, optimizer):
         if optimizer is not None:
             torch.save(optimizer.state_dict(), optimizer_name)
 
+def custom_logger(context, **kwargs):
+    time = datetime.datetime.now()
+    log = '[{}] CTX: \"{}\"'.format(time, context)
+    for i, (k, v) in enumerate(kwargs.items()):
+        log += '\n\t{}: {}'.format(k, v)
+    log += '\n'
+    with open(os.path.join(args.res_dir, 'custom_log.txt'), 'a') as f:
+        f.write(log)
 
 # Arguments
 parser = argparse.ArgumentParser(description='Inductive Graph-based Matrix Completion')
