@@ -7,5 +7,4 @@ data/
 plot_figure.py
 __pycache__/
 
-Dockerfile.pytorch
-Dockerfile.anibali
+docker/*

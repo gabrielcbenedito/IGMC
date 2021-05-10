@@ -1,0 +1,8 @@
+--data-name         ml_100k
+--save-appendix     _mnph200
+--data-appendix     _mnph200
+--epochs            80
+--max-nodes-per-hop 200
+--testing
+--ensemble
+--dynamic-train
