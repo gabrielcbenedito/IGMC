@@ -66,7 +66,8 @@ def download_dataset(dataset, files, data_dir):
     """ Downloads dataset if files are not present. """
 
     if not np.all([os.path.isfile(data_dir + f) for f in files]):
-        url = "http://files.grouplens.org/datasets/movielens/" + dataset.replace('_', '-') + '.zip'
+        url = "http://files.grouplens.org/datasets/movielens/" + \
+            dataset.replace('_', '-') + '.zip'
         request = urlopen(url)
 
         print('Downloading %s dataset' % dataset)
@@ -82,7 +83,7 @@ def download_dataset(dataset, files, data_dir):
             zip_ref.extractall('raw_data/')
 
         os.rename(target_dir, data_dir)
-        #shutil.rmtree(target_dir)
+        # shutil.rmtree(target_dir)
 
 
 def load_data(fname, seed=1234, verbose=True):
@@ -163,7 +164,8 @@ def load_data(fname, seed=1234, verbose=True):
         u_nodes_ratings, u_dict, num_users = map_data(u_nodes_ratings)
         v_nodes_ratings, v_dict, num_items = map_data(v_nodes_ratings)
 
-        u_nodes_ratings, v_nodes_ratings = u_nodes_ratings.astype(np.int64), v_nodes_ratings.astype(np.int32)
+        u_nodes_ratings, v_nodes_ratings = u_nodes_ratings.astype(
+            np.int64), v_nodes_ratings.astype(np.int32)
         ratings = ratings.astype(np.float64)
 
         # Movie features (genres)
@@ -210,7 +212,8 @@ def load_data(fname, seed=1234, verbose=True):
                 # gender
                 u_features[u_dict[u_id], 1] = gender_dict[row['gender']]
                 # occupation
-                u_features[u_dict[u_id], occupation_dict[row['occupation']]] = 1.
+                u_features[u_dict[u_id],
+                           occupation_dict[row['occupation']]] = 1.
 
         u_features = sp.csr_matrix(u_features)
         v_features = sp.csr_matrix(v_features)
@@ -246,7 +249,8 @@ def load_data(fname, seed=1234, verbose=True):
         u_nodes_ratings, u_dict, num_users = map_data(u_nodes_ratings)
         v_nodes_ratings, v_dict, num_items = map_data(v_nodes_ratings)
 
-        u_nodes_ratings, v_nodes_ratings = u_nodes_ratings.astype(np.int64), v_nodes_ratings.astype(np.int64)
+        u_nodes_ratings, v_nodes_ratings = u_nodes_ratings.astype(
+            np.int64), v_nodes_ratings.astype(np.int64)
         ratings = ratings.astype(np.float32)
 
         # Load movie features
@@ -337,7 +341,8 @@ def load_data(fname, seed=1234, verbose=True):
         u_nodes_ratings, u_dict, num_users = map_data(u_nodes_ratings)
         v_nodes_ratings, v_dict, num_items = map_data(v_nodes_ratings)
 
-        u_nodes_ratings, v_nodes_ratings = u_nodes_ratings.astype(np.int64), v_nodes_ratings.astype(np.int64)
+        u_nodes_ratings, v_nodes_ratings = u_nodes_ratings.astype(
+            np.int64), v_nodes_ratings.astype(np.int64)
         ratings = ratings.astype(np.float32)
 
     elif fname == 'ml_25m':
@@ -351,7 +356,7 @@ def load_data(fname, seed=1234, verbose=True):
 
         chunksize = 10000
         data = pd.DataFrame()
-        pbar = tqdm(pd.read_csv(filename, header=0, usecols=['uid', 'iid', 'rating'], 
+        pbar = tqdm(pd.read_csv(filename, header=0, usecols=['uid', 'iid', 'rating'],
                     chunksize=chunksize), total=row_count//chunksize)
         for chunk in pbar:
             data = pd.concat([data, chunk], ignore_index=True)
@@ -365,7 +370,8 @@ def load_data(fname, seed=1234, verbose=True):
         u_nodes_ratings, u_dict, num_users = map_data(u_nodes_ratings)
         v_nodes_ratings, v_dict, num_items = map_data(v_nodes_ratings)
 
-        u_nodes_ratings, v_nodes_ratings = u_nodes_ratings.astype(np.int64), v_nodes_ratings.astype(np.int64)
+        u_nodes_ratings, v_nodes_ratings = u_nodes_ratings.astype(
+            np.int64), v_nodes_ratings.astype(np.int64)
         ratings = ratings.astype(np.float32)
 
     else:
@@ -375,6 +381,7 @@ def load_data(fname, seed=1234, verbose=True):
         print('Number of users = %d' % num_users)
         print('Number of items = %d' % num_items)
         print('Number of links = %d' % ratings.shape[0])
-        print('Fraction of positive links = %.4f' % (float(ratings.shape[0]) / (num_users * num_items),))
+        print('Fraction of positive links = %.4f' %
+              (float(ratings.shape[0]) / (num_users * num_items),))
 
     return num_users, num_items, u_nodes_ratings, v_nodes_ratings, ratings, u_features, v_features

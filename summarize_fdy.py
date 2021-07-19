@@ -29,5 +29,5 @@ for prefix in prefixs:
         print('\033[91m Results of ' + dataset + '\033[00m')
         print(RMSE)
         print('Mean and std of test rmse:')
-        print('%.4f$\pm$%.4f'%(np.around(np.mean(RMSE), 4), np.around(np.std(RMSE), 4)))
-
+        print('%.4f$\pm$%.4f' %
+              (np.around(np.mean(RMSE), 4), np.around(np.std(RMSE), 4)))
