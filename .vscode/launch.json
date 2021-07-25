@@ -5,6 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Test: indexers",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/gabriel/IGMC/test/main.py",
+            "console": "integratedTerminal",
+            "stopOnEntry": true
+        },
+        {
             "name": "Debug: IGMC",
             "type": "python",
             "request": "launch",
