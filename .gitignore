@@ -6,3 +6,5 @@ software/
 data/
 plot_figure.py
 __pycache__/
+
+raw_data*
