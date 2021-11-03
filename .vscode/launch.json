@@ -19,6 +19,7 @@
             "program": "/home/gabriel/IGMC/Main.py",
             "console": "integratedTerminal",
             "stopOnEntry": true,
+            "justMyCode": false,
             "args": [
                 "--data-name",
                 "ml_100k",
@@ -30,10 +31,14 @@
                 "80",
                 "--max-nodes-per-hop",
                 "200",
-                "--testing",
                 "--ensemble",
                 "--dynamic-train",
-                "--debug"
+                "--batch-size",
+                "1",
+                "--use-features",
+                "--dynamic-train",
+                "--dynamic-test",
+                "--dynamic-val"
             ]
         }
     ]
